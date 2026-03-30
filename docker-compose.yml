@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: labs-postgres
+    environment:
+      POSTGRES_DB: labdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - "./исходные данные:/data"
+      - ./init:/docker-entrypoint-initdb.d/
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
